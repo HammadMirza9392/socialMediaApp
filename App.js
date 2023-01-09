@@ -7,6 +7,7 @@ import Profile from './components/Screens/Profile';
 const Stack = createNativeStackNavigator();
 import Login from './components/Screens/Login';
 import Register from './components/Screens/Register';
+import { auth } from './firebase/firebasey.config.js';
 
 
 const App = () => {
@@ -16,7 +17,7 @@ const App = () => {
 
       <Stack.Screen name="Login" component={Login} />
 
-      
+
         <Stack.Screen name="Home" component={Home} />
 
         <Stack.Screen name="Profile" component={Profile} />

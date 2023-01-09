@@ -2,11 +2,37 @@ import { Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, Vi
 import React, {useState} from 'react'
 import { TextInput } from 'react-native-paper';
 
-const Login = ({navigation}) => {
+import {signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../../firebase/firebasey.config.js';
 
+
+
+
+
+const Login = ({navigation}) => {
+ 
+   
     const [email,setEmail] = useState('');
     const [password,setpassword] = useState('');
     console.log(email);
+
+    const loginFunctoin = ()=>{
+        signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        alert('User Login Successfully');
+       navigation.replace('Home');
+
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert(errorMessage);
+      });
+    }
+
+
+
+
   return (
     <ScrollView style={styles.mainContainer}>
         <View style={styles.subMainContainer}>
@@ -29,10 +55,10 @@ const Login = ({navigation}) => {
         />
       </View>
       <View style={styles.ButtonContainer}>
-        <TouchableOpacity style={styles.btnlogin} onPress={()=> alert('Email is '+ email + 'and Password is' + password)}>
+        <TouchableOpacity style={styles.btnlogin} onPress={()=> loginFunctoin()}>
             <Text style={styles.btnText}>Login</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.btnlogin}>
+        <TouchableOpacity style={styles.btnlogin} onPress={()=> navigation.navigate('Register')}>
             <Text style={styles.btnText}>Register</Text>
         </TouchableOpacity>
       </View>
