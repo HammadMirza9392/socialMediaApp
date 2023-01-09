@@ -1,18 +1,18 @@
-import { StyleSheet, Text, View,Button } from 'react-native'
+import { StyleSheet, Text, View,Button, SafeAreaView } from 'react-native'
 import React from 'react'
 
 const Home = ({navigation}) => {
   return (
-    <View>
+    <SafeAreaView>
       <Text>Home</Text>
       <Button
       title="Go to Jane's profile"
       onPress={() =>
-        navigation.navigate('Profile')
+        navigation.navigate('Login')
        
       }
       /> 
-    </View>
+    </SafeAreaView>
   )
 }
 
